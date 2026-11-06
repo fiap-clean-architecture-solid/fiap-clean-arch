@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FIAP.Fiapfy.Api/FIAP.Fiapfy.Api.csproj" />
+    <Project Path="src/FIAP.Fiapfy.Application/FIAP.Fiapfy.Application.csproj" />
+    <Project Path="src/FIAP.Fiapfy.Domain/FIAP.Fiapfy.Domain.csproj" />
+    <Project Path="src/FIAP.Fiapfy.Infrastructure/FIAP.Fiapfy.Infrastructure.csproj" />
+  </Folder>
+</Solution>
