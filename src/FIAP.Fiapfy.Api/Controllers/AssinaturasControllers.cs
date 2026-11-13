@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using FIAP.Fiapfy.Contracts.Assinaturas;
+
+namespace FIAP.Fiapfy.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
