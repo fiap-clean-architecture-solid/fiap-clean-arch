@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FIAP.Fiapfy.Application\FIAP.Fiapfy.Application.csproj" />
+    <ProjectReference Include="..\FIAP.Fiapfy.Contracts\FIAP.Fiapfy.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

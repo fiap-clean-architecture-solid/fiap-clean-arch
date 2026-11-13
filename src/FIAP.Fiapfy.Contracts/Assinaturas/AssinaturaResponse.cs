@@ -1,0 +1,1 @@
+public record AssinaturaResponse(Guid Id, TipoAssinaturaEnum TipoAssinatura);
