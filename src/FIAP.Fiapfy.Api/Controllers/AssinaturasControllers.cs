@@ -7,13 +7,23 @@ namespace FIAP.Fiapfy.Api.Controllers;
 [Route("[controller]")]
 public class AssinaturasController : ControllerBase
 {
+    private readonly IAssinaturaService _assinaturaService;
+
+    public AssinaturasController(IAssinaturaService assinaturaService)
+    {
+        _assinaturaService = assinaturaService;
+    }
+
     [HttpPost]
     public IActionResult CriarAssinatura(CriarAssinaturaRequest request)
     {
-        //RECEBER, TRADUZIR, DELEGAR, DEVOLVER
+        var assinaturaId = _assinaturaService.CriarAssinatura(request.TipoAssinatura.ToString(),
+                                                              request.UsuarioId);
+
+        var retorno = new AssinaturaResponse(assinaturaId, request.TipoAssinatura);
 
         
-        return Ok(request);
+        return Ok(retorno);
     }
 
 }
