@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using FIAP.Fiapfy.Contracts.Assinaturas;
+using MediatR;
 
 namespace FIAP.Fiapfy.Api.Controllers;
 
@@ -7,22 +8,22 @@ namespace FIAP.Fiapfy.Api.Controllers;
 [Route("[controller]")]
 public class AssinaturasController : ControllerBase
 {
-    private readonly IAssinaturaService _assinaturaService;
+    private readonly ISender _mediator;
 
-    public AssinaturasController(IAssinaturaService assinaturaService)
+    public AssinaturasController(ISender mediator)
     {
-        _assinaturaService = assinaturaService;
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public IActionResult CriarAssinatura(CriarAssinaturaRequest request)
+    public async Task<IActionResult> CriarAssinatura(CriarAssinaturaRequest request)
     {
-        var assinaturaId = _assinaturaService.CriarAssinatura(request.TipoAssinatura.ToString(),
-                                                              request.UsuarioId);
+        var command = new CriarAssinaturaCommand(request.TipoAssinatura.ToString(), request.UsuarioId);
+
+        var assinaturaId = await _mediator.Send(command);
 
         var retorno = new AssinaturaResponse(assinaturaId, request.TipoAssinatura);
 
-        
         return Ok(retorno);
     }
 
