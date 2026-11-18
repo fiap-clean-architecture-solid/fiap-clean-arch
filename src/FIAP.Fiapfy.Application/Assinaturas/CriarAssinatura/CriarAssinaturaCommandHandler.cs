@@ -1,11 +1,12 @@
+using ErrorOr;
 using MediatR;
 
 namespace FIAP.Fiapfy.Application.Assinaturas.CriarAssinatura;
 
-public class CriarAssinaturaCommandHandler : IRequestHandler<CriarAssinaturaCommand, Guid>
+public class CriarAssinaturaCommandHandler : IRequestHandler<CriarAssinaturaCommand, ErrorOr<Guid>>
 {
-    public Task<Guid> Handle(CriarAssinaturaCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> Handle(CriarAssinaturaCommand request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(Guid.NewGuid());
+        return Guid.NewGuid();
     }
 }
