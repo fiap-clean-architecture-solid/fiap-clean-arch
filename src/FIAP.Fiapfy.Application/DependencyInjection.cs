@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
+namespace FIAP.Fiapfy.Application;
+
 public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)

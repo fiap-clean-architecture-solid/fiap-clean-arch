@@ -1,3 +1,6 @@
+using FIAP.Fiapfy.Application;
+using FIAP.Fiapfy.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

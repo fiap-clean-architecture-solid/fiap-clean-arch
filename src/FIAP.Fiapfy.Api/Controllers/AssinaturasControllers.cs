@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using FIAP.Fiapfy.Contracts.Assinaturas;
+using FIAP.Fiapfy.Application.Assinaturas.CriarAssinatura;
 using MediatR;
 
 namespace FIAP.Fiapfy.Api.Controllers;
