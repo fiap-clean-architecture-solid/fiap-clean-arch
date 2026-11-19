@@ -24,7 +24,7 @@ public class AssinaturasController : ControllerBase
         var criarAssinaturaResultado = await _mediator.Send(command);
 
         return criarAssinaturaResultado.MatchFirst(
-            id => Ok(new AssinaturaResponse(criarAssinaturaResultado.Value, request.TipoAssinatura)),
+            assinatura => Ok(new AssinaturaResponse(assinatura.Id, request.TipoAssinatura)),
             error => Problem()
         );
     }
