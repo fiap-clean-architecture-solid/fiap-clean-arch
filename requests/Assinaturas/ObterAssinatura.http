@@ -1,0 +1,5 @@
+@host=http://localhost:5249
+
+@assinaturaId=292367a3-e7ce-482a-b809-c1140238e23c
+
+GET {{host}}/Assinaturas/{{assinaturaId}}

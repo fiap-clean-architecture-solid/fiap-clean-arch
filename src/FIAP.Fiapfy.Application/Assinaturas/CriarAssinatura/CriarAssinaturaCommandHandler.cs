@@ -8,12 +8,12 @@ namespace FIAP.Fiapfy.Application.Assinaturas.CriarAssinatura;
 public class CriarAssinaturaCommandHandler : IRequestHandler<CriarAssinaturaCommand, ErrorOr<Assinatura>>
 {
     private readonly IAssinaturasRepository _assinaturaRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    //private readonly IUnitOfWork _unitOfWork;
 
-    public CriarAssinaturaCommandHandler(IAssinaturasRepository assinaturaRepository, IUnitOfWork unitOfWork)
+    public CriarAssinaturaCommandHandler(IAssinaturasRepository assinaturaRepository/*, IUnitOfWork unitOfWork*/)
     {
         _assinaturaRepository = assinaturaRepository;
-        _unitOfWork = unitOfWork;
+        //_unitOfWork = unitOfWork;
     }
 
     public async Task<ErrorOr<Assinatura>> Handle(CriarAssinaturaCommand request, CancellationToken cancellationToken)
@@ -21,11 +21,12 @@ public class CriarAssinaturaCommandHandler : IRequestHandler<CriarAssinaturaComm
         //Criando Assinatura
         var assinatura = new Assinatura
         {
-            Id = Guid.NewGuid()
+            Id = Guid.NewGuid(),
+            TipoAssinatura = request.TipoAssinatura
         };
 
-        _assinaturaRepository.Inserir(assinatura);
-        await _unitOfWork.CommitAsync();
+        await _assinaturaRepository.InserirAsync(assinatura);
+        //await _unitOfWork.CommitAsync();
 
         return assinatura;
     }

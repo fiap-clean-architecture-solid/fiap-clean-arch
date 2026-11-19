@@ -16,6 +16,20 @@ public class AssinaturasController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> ObterAssinatura(Guid id)
+    {
+        var query = new ObterAssinaturaQuery(id);
+
+        var assinaturas = await _mediator.Send(query);
+
+        return assinaturas.MatchFirst(
+            assinatura => Ok(new AssinaturaResponse(assinatura.Id, Enum.Parse<TipoAssinaturaEnum>(assinatura.TipoAssinatura))),
+            error => Problem()
+        );
+    }
+
+
     [HttpPost]
     public async Task<IActionResult> CriarAssinatura(CriarAssinaturaRequest request)
     {
@@ -24,7 +38,9 @@ public class AssinaturasController : ControllerBase
         var criarAssinaturaResultado = await _mediator.Send(command);
 
         return criarAssinaturaResultado.MatchFirst(
-            assinatura => Ok(new AssinaturaResponse(assinatura.Id, request.TipoAssinatura)),
+            assinatura => CreatedAtAction(nameof(ObterAssinatura),
+                                          new { id = assinatura.Id },
+                                          new AssinaturaResponse(assinatura.Id, request.TipoAssinatura)),
             error => Problem()
         );
     }
