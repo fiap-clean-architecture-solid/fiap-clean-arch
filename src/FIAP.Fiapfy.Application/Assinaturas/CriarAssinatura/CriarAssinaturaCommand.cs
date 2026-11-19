@@ -1,4 +1,5 @@
 using ErrorOr;
+using FIAP.Fiapfy.Domain.Assinaturas;
 using MediatR;
 
 namespace FIAP.Fiapfy.Application.Assinaturas.CriarAssinatura;

@@ -1,3 +1,5 @@
+using FIAP.Fiapfy.Domain.Assinaturas;
+
 namespace FIAP.Fiapfy.Application.Common.Interfaces;
 
 public interface IAssinaturasRepository
