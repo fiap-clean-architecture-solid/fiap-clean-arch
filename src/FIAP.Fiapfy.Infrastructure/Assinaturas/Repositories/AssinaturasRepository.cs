@@ -3,20 +3,22 @@ using FIAP.Fiapfy.Domain.Assinaturas;
 
 public class AssinaturaRepository : IAssinaturasRepository
 {
-    public readonly static List<Assinatura> _assinaturas = [];
+    public readonly FiapfyDbContext _context;
 
-
-    public Task<Assinatura?> ObterPorIdAsync(Guid id)
+    public AssinaturaRepository(FiapfyDbContext context)
     {
-        var assinatura = _assinaturas.FirstOrDefault(a => a.Id == id);
-
-        return Task.FromResult(assinatura);
+        _context = context;
     }
 
-    public Task InserirAsync(Assinatura assinatura)
+    public async Task<Assinatura?> ObterPorIdAsync(Guid id)
     {
-        _assinaturas.Add(assinatura);
+        return await _context.Assinaturas.FindAsync(id);
+    }
 
-        return Task.CompletedTask;
+    public async Task InserirAsync(Assinatura assinatura)
+    {
+        await _context.Assinaturas.AddAsync(assinatura);
+
+        await _context.SaveChangesAsync();
     }
 }
